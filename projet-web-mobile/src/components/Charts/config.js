@@ -24,7 +24,8 @@ export const Charts = {
       'info': '#11cdef',
       'success': '#2dce89',
       'danger': '#f5365c',
-      'warning': '#fb6340'
+      'warning': '#fb6340',
+      'theme': '#0599C1'
     },
     black: '#12263F',
     white: '#FFFFFF',
