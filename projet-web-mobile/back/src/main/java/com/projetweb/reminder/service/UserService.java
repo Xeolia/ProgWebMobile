@@ -1,13 +1,15 @@
 package com.projetweb.reminder.service;
 
+import com.projetweb.reminder.SecurityConfigurer;
 import com.projetweb.reminder.User;
 import com.projetweb.reminder.repository.UserRepository;
 import com.projetweb.reminder.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.config.annotation.SecurityConfigurer;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class UserService {
 
     @Autowired
@@ -27,6 +29,51 @@ public class UserService {
     public User getUserByUsername(String username)
     {
         return userRepository.getUserByUsername(username);
+    }
+
+    public boolean createUser(String username, String password, String name, String email)
+    {
+        User user = userRepository.getUserByUsername(username);
+        if( user !=  null)
+        {
+            return false;
+        }
+        else
+        {
+            User newUser = new User();
+            newUser.setUsername(username);
+            newUser.setPassword(passwordEncoder.passwordEncoder().encode(password));
+            newUser.setName(name);
+            newUser.setEmail(email);
+            userRepository.save(newUser);
+            return true;
+        }
+
+    }
+    public boolean changePassword(String username, String password)
+    {
+        User user = userRepository.getUserByUsername(username);
+        if(user != null)
+        {
+            userRepository.delete(user);
+            user.setPassword(passwordEncoder.passwordEncoder().encode(password));
+            userRepository.save(user);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean changeMail(String username, String mail)
+    {
+        User user = userRepository.getUserByUsername(username);
+        if(user != null)
+        {
+            userRepository.delete(user);
+            user.setEmail(mail);
+            userRepository.save(user);
+            return true;
+        }
+        return false;
     }
     public String getUsernameFromToken(String token)
     {

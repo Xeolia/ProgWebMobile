@@ -1,6 +1,9 @@
 package com.projetweb.reminder.controller;
 
 import com.projetweb.reminder.User;
+import com.projetweb.reminder.models.AuthentificationResponse;
+import com.projetweb.reminder.models.AuthentificationRequest;
+import com.projetweb.reminder.service.MyUserDetailsService;
 import com.projetweb.reminder.service.UserService;
 import com.projetweb.reminder.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +26,26 @@ public class UserController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
+    private MyUserDetailsService myUserDetailsService;
+
+    @Autowired
     private JwtUtil Tokenutil;
+    @PostMapping("/user/authentification")
+    public ResponseEntity<?> createAuthentificationToken(@RequestBody AuthentificationRequest authenticationrequest) throws Exception {
+        try {
+            authenticationManager.authenticate
+                    (
+                            new UsernamePasswordAuthenticationToken(authenticationrequest.getUsername(), authenticationrequest.getPassword())
+                    );
+        }
+        catch (BadCredentialsException e)
+        {
+            throw new Exception("Nom d'utilisateur ou mot de passe incorrect", e);
+        }
+        final UserDetails userDetails = myUserDetailsService.loadUserByUsername(authenticationrequest.getUsername());
+        final String token = Tokenutil.generateToken(userDetails);
+        return ResponseEntity.ok(new AuthentificationResponse(token));
+    }
 
     @GetMapping("/user")
     @ResponseBody
@@ -32,6 +54,12 @@ public class UserController {
         String username = userService.getUsernameFromToken(headers.get("authorization"));
         User user =  userService.getUserByUsername(username);
         return user;
+    }
+    @PostMapping("/user/registration")
+    @ResponseBody
+    public boolean createUser(@RequestBody User user)
+    {
+        return userService.createUser(user.getUsername(),user.getPassword(),user.getName(),user.getEmail());
     }
 
 }
