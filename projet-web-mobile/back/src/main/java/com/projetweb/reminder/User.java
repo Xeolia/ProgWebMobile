@@ -28,6 +28,10 @@ public class User {
     private String codePostal;
 
 
+
+    @OneToOne(mappedBy = "user")
+    private Sondage sondage;
+
     public String getVille() {return ville;}
 
     public void setVille(String ville) {this.ville = ville;}
@@ -75,4 +79,5 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
+
 }
