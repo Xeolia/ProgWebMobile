@@ -3,47 +3,50 @@
         <div class="col-lg-5 col-md-7">
             <div class="card bg-secondary shadow border-0">
                 <div class="card-header bg-transparent pb-5">
-                    <div class="text-muted text-center mt-2 mb-3">
-                        <small>Sign up with</small>
-                    </div>
+                    <div class="text-muted text-center mt-2 mb-3"><small>Have an account ?</small></div>
                     <div class="btn-wrapper text-center">
                         <a href="#" class="btn btn-neutral btn-icon">
-                            <span class="btn-inner--icon"><img src="img/icons/common/github.svg"></span>
-                            <span class="btn-inner--text">Github</span>
-                        </a>
-                        <a href="#" class="btn btn-neutral btn-icon">
-                            <span class="btn-inner--icon"><img src="img/icons/common/google.svg"></span>
-                            <span class="btn-inner--text">Google</span>
+                            <span class="btn-inner--text"><router-link to="/login">Login</router-link></span>
                         </a>
                     </div>
                 </div>
                 <div class="card-body px-lg-5 py-lg-5">
                     <div class="text-center text-muted mb-4">
-                        <small>Or sign up with credentials</small>
+                        <small>Sign up</small>
                     </div>
                     <form role="form">
 
                         <base-input class="input-group-alternative mb-3"
+                                    placeholder="Username"
+                                    id="username_register"
+                                    addon-left-icon="ni ni-hat-83"
+                                    v-model="model.username">
+                        </base-input>
+
+                        <base-input class="input-group-alternative mb-3"
                                     placeholder="Name"
+                                    id="name_register"
                                     addon-left-icon="ni ni-hat-3"
                                     v-model="model.name">
                         </base-input>
 
                         <base-input class="input-group-alternative mb-3"
                                     placeholder="Email"
+                                    id="email_register"
                                     addon-left-icon="ni ni-email-83"
                                     v-model="model.email">
                         </base-input>
 
                         <base-input class="input-group-alternative"
                                     placeholder="Password"
+                                    id="password_register"
                                     type="password"
                                     addon-left-icon="ni ni-lock-circle-open"
                                     v-model="model.password">
                         </base-input>
 
                         <div class="text-muted font-italic">
-                            <small>password strength: <span class="text-success font-weight-700">strong</span></small>
+                            <small>Password strength: <span class="text-success font-weight-700">strong</span></small>
                         </div>
 
                         <div class="row my-4">
@@ -54,21 +57,9 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            <base-button type="primary" class="my-4">Create account</base-button>
+                            <base-button type="primary" class="my-4" v-on:click="postSign()" value="postSign">Create account</base-button>
                         </div>
                     </form>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-6">
-                    <a href="#" class="text-light">
-                        <small>Forgot password?</small>
-                    </a>
-                </div>
-                <div class="col-6 text-right">
-                    <router-link to="/login" class="text-light">
-                        <small>Login into your account</small>
-                    </router-link>
                 </div>
             </div>
         </div>
@@ -85,7 +76,27 @@
           password: ''
         }
       }
-    }
+    },
+      methods: {
+          postSign: async() => {
+              var username = document.getElementById("username_register").value;
+              var password = document.getElementById("password_register").value;
+              var email = document.getElementById("email_register").value;
+              var name = document.getElementById("name_register").value;
+              console.log("username : " + username + "\npassword : " + "\nname : " + name + password + "\nname : " + name + '\nemail : ' + email);
+
+              const rawResponse = await fetch('http://127.0.0.1:8085/user/registration', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({username: username, name: name, password: password, email: email})
+              });
+
+              const content = await rawResponse.json();
+              console.log(content)
+          }
+      }
   }
 </script>
 <style>

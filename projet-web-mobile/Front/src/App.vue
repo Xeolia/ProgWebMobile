@@ -5,11 +5,11 @@
 </template>
 
 <script>
-  import Dashboard from './views/Dashboard.vue'
+  import Login from './views/Login.vue'
   export default {
     name: 'App',
     view: {
-      Dashboard
+      Login
     }
   }
 </script>

@@ -30,12 +30,12 @@
                 </div>
                 <!-- Navbar items -->
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
+<!--                    <li class="nav-item">
                         <router-link class="nav-link nav-link-icon" to="/">
                             <i class="ni ni-planet"></i>
-                            <span class="nav-link-inner--text">Dashboard</span>
+                            <span class="nav-link-inner&#45;&#45;text">Dashboard</span>
                         </router-link>
-                    </li>
+                    </li>-->
                     <li class="nav-item">
                         <router-link class="nav-link nav-link-icon" to="/register">
                             <i class="ni ni-circle-08"></i>
@@ -48,28 +48,17 @@
                             <span class="nav-link-inner--text">Login</span>
                         </router-link>
                     </li>
-                    <li class="nav-item">
+<!--                    <li class="nav-item">
                         <router-link class="nav-link nav-link-icon" to="/profile">
                             <i class="ni ni-single-02"></i>
-                            <span class="nav-link-inner--text">Profile</span>
+                            <span class="nav-link-inner&#45;&#45;text">Profile</span>
                         </router-link>
-                    </li>
+                    </li>-->
                 </ul>
             </template>
         </base-nav>
         <!-- Header -->
         <div class="header bg-gradient-theme py-7 py-lg-8">
-            <div class="container">
-                <div class="header-body text-center mb-7">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-5 col-md-6">
-                            <h1 class="text-white">Welcome!</h1>
-                            <p class="text-lead text-white">Use these awesome forms to login or create new account in
-                                your project for free.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="separator separator-bottom separator-skew zindex-100">
                 <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
                      xmlns="http://www.w3.org/2000/svg">
@@ -83,36 +72,6 @@
                 <router-view></router-view>
             </slide-y-up-transition>
         </div>
-        <footer class="py-5">
-            <div class="container">
-                <div class="row align-items-center justify-content-xl-between">
-                    <div class="col-xl-6">
-                        <div class="copyright text-center text-xl-left text-muted">
-                            &copy; {{year}} <a href="https://www.creative-tim.com" class="font-weight-bold ml-1"
-                                               target="_blank">Creative Tim</a>
-                        </div>
-                    </div>
-                    <div class="col-xl-6">
-                        <ul class="nav nav-footer justify-content-center justify-content-xl-end">
-                            <li class="nav-item">
-                                <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About
-                                    Us</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md"
-                                   class="nav-link" target="_blank">MIT License</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer>
     </div>
 </template>
 <script>
