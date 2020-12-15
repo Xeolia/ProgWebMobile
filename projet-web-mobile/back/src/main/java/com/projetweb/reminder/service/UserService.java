@@ -82,6 +82,6 @@ public class UserService {
     public String getUsernameFromToken(String token)
     {
         token = token.substring(7);
-       return TokenUtil.extractUsername(token);
+        return TokenUtil.extractUsername(token);
     }
 }

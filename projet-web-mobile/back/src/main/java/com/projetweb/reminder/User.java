@@ -29,8 +29,11 @@ public class User {
 
 
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "creator")
     private Sondage sondage;
+
+    @OneToOne(mappedBy = "votant")
+    private Vote vote;
 
     public String getVille() {return ville;}
 

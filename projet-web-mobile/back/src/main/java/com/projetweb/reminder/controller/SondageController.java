@@ -18,20 +18,23 @@ public class SondageController {
     @Autowired
     SondageService sondageService;
 
+    @Autowired
+    UserService userService;
 
-        @PostMapping("sondage/create")
-        @ResponseBody
-        public boolean createSondage(@RequestBody Sondage sondage, @RequestHeader("Authorization") Map<String, String> headers) {
-            String token = sondageService.getUsernameFromToken(headers.get("authorization"));
-            sondage.setCreator(token);
-            return this.sondageService.enregistrer(sondage);
-        }
 
-        @GetMapping("sondage/get")
-        @ResponseBody
-        public List<Sondage> getSondage(@RequestHeader("Authorization") Map<String, String> headers) {
-            String token = sondageService.getUsernameFromToken(headers.get("authorization"));
-            return sondageService.getSondageRepository(token);
-        }
+    @PostMapping("sondage/create")
+    @ResponseBody
+    public boolean createSondage(@RequestBody Sondage sondage, @RequestHeader("Authorization") Map<String, String> headers) {
+        String username = userService.getUsernameFromToken(headers.get("authorization"));
+        User user = userService.getUserByUsername(username);
+        sondage.setCreator(user);
+        return this.sondageService.enregistrer(sondage);
+    }
+
+//        @GetMapping("sondage/get")
+//        @ResponseBody
+//        public List<Sondage> getSondage(@RequestHeader("Authorization") Map<String, String> headers) {
+//            return sondageService.getSondageRepository();
+//        }
 }
 

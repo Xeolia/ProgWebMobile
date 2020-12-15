@@ -7,7 +7,6 @@ import com.projetweb.reminder.Sondage;
 
 import java.util.List;
 
-    public interface SondageRepository extends JpaRepository<Sondage, Integer> {
-        public List<Sondage> findAllByCreatorEquals(String creator);
-    }
+public interface SondageRepository extends JpaRepository<Sondage, Integer> {
+}
 

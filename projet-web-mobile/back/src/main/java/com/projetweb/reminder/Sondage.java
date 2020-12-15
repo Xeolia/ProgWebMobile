@@ -18,22 +18,21 @@ public class Sondage {
     @GeneratedValue
     private int id;
     private String ville;
-    private String creator;
     private String lieu;
     private String name;
     private String date;
-    private String avis;
+    private String description;
 
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    private User creator;
+
+    @OneToOne(mappedBy = "reference")
+    private Vote vote;
+
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getVille() {
@@ -42,14 +41,6 @@ public class Sondage {
 
     public void setVille(String ville) {
         this.ville = ville;
-    }
-
-    public String getCreator() {
-        return creator;
-    }
-
-    public void setCreator(String creator) {
-        this.creator = creator;
     }
 
     public String getLieu() {
@@ -76,21 +67,20 @@ public class Sondage {
         this.date = date;
     }
 
-    public String getAvis() {
-        return avis;
+    public String getDescription() {
+        return description;
     }
 
-    public void setAvis(String avis) {
-        this.avis = avis;
+    public void setDescription(String avis) {
+        this.description = avis;
     }
 
-
-    public User getUser() {
-        return user;
+    public User getCreator() {
+        return creator;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setCreator(User creator) {
+        this.creator = creator;
     }
 }
 

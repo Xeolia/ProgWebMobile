@@ -8,26 +8,22 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-    public class SondageService {
+public class SondageService {
 
-        @Autowired
-        SondageRepository sondageRepository;
-        @Autowired
-        private JwtUtil jwtUtil;
+    @Autowired
+    SondageRepository sondageRepository;
+    @Autowired
+    private JwtUtil jwtUtil;
 
-        public boolean enregistrer(Sondage sondage){
-            if(sondageRepository.save(sondage)!=null)
-            {
-                return true;
-            }
-            return false;
+    public boolean enregistrer(Sondage sondage){
+        if(sondageRepository.save(sondage)!=null)
+        {
+            return true;
         }
-        public String  getUsernameFromToken(String token){
-            token=token.substring(7);
-            return jwtUtil.extractUsername(token);
-        }
+        return false;
+    }
 
-        public List<Sondage> getSondageRepository(String token) {
-            return sondageRepository.findAllByCreatorEquals(token);
-        }
+    public List<Sondage> getSondageRepository() {
+        return sondageRepository.findAll();
+    }
 }
