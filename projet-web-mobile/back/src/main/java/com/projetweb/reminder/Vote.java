@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 
+
 @Table(name = "vote")
 @Data
 @AllArgsConstructor
@@ -15,12 +16,26 @@ import javax.persistence.*;
 
 public class Vote {
 
+    public enum Status {
+        ACCEPT("A"), DECLINE("D"), MAYBE("M");
+        private String status;
+
+        private Status(String status) {
+            this.status = status;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+    }
+
+
     @Id
     @GeneratedValue
     private long id;
 
-    String type;
-
+    @Enumerated(EnumType.ORDINAL)
+    private Status status;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -30,13 +45,6 @@ public class Vote {
     @JoinColumn(name = "sondage_id", referencedColumnName = "id")
     private Sondage reference;
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 
     public User getVotant() {
         return votant;
