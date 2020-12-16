@@ -83,7 +83,7 @@
                       response.json().then(data => {
                           console.log(data);
                           if(response.status === 200){
-                              this.$router.push({ path: '/'});
+                              this.$router.push({ path: '/icons'});
                           }else{
                               alert("Bad password");
                           }

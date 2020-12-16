@@ -5,6 +5,8 @@ import AuthLayout from '@/layout/AuthLayout'
 Vue.use(Router);
 
 export default new Router({
+  mode: 'history',
+  hash: false,
   linkExactActiveClass: 'active',
   routes: [
     {
@@ -15,12 +17,12 @@ export default new Router({
         {
           path: '/login',
           name: 'login',
-          component: () => import(/* webpackChunkName: "demo" */ './views/Login.vue')
+          component: () => import('./views/Login.vue')
         },
         {
           path: '/register',
           name: 'register',
-          component: () => import(/* webpackChunkName: "demo" */ './views/Register.vue')
+          component: () => import('./views/Register.vue')
         }
       ]
     },
@@ -32,31 +34,18 @@ export default new Router({
         {
           path: '/dashboard',
           name: 'dashboard',
-          // route level code-splitting
-          // this generates a separate chunk (about.[hash].js) for this route
-          // which is lazy-loaded when the route is visited.
-          component: () => import(/* webpackChunkName: "demo" */ './views/Dashboard.vue')
+          component: () => import( './views/Dashboard.vue')
         },
         {
-          path: '/icons',
-          name: 'icons',
-          component: () => import(/* webpackChunkName: "demo" */ './views/Icons.vue')
+          path: '/sondage',
+          name: 'sondage',
+          component: () => import('./views/Sondage.vue')
         },
         {
-          path: '/profile',
-          name: 'profile',
-          component: () => import(/* webpackChunkName: "demo" */ './views/UserProfile.vue')
+          path: '/vote',
+          name: 'vote',
+          component: () => import('./views/Vote.vue')
         },
-        {
-          path: '/maps',
-          name: 'maps',
-          component: () => import(/* webpackChunkName: "demo" */ './views/Maps.vue')
-        },
-        {
-          path: '/tables',
-          name: 'tables',
-          component: () => import(/* webpackChunkName: "demo" */ './views/Tables.vue')
-        }
       ]
     },
   ]

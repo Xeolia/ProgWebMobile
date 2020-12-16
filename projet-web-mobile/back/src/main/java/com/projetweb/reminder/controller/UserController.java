@@ -1,8 +1,8 @@
 package com.projetweb.reminder.controller;
 
 import com.projetweb.reminder.User;
-import com.projetweb.reminder.models.AuthentificationResponse;
 import com.projetweb.reminder.models.AuthentificationRequest;
+import com.projetweb.reminder.models.AuthentificationResponse;
 import com.projetweb.reminder.service.MyUserDetailsService;
 import com.projetweb.reminder.service.UserService;
 import com.projetweb.reminder.utils.JwtUtil;
