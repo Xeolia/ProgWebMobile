@@ -22,12 +22,36 @@ public class User {
     private String password;
     private String name;
     private String email;
+    private String ville;
+    private String adresse;
+    private String pays;
+    private String codePostal;
 
+
+
+    @OneToOne(mappedBy = "creator")
+    private Sondage sondage;
+
+    @OneToOne(mappedBy = "votant")
+    private Vote vote;
+
+    public String getVille() {return ville;}
+
+    public void setVille(String ville) {this.ville = ville;}
+
+    public String getAdresse() {return adresse;}
+
+    public void setAdresse(String adresse) {this.adresse = adresse;}
+
+    public String getPays() {return pays;}
+
+    public void setPays(String pays) {this.pays = pays;}
+
+    public String getCodePostal() {return codePostal;}
+
+    public void setCodePostal(String codePostal) {this.codePostal = codePostal;}
 
     public void setEmail(String email) { this.email = email; }
-
-
-
 
     public String getEmail() { return email; }
 
@@ -47,10 +71,6 @@ public class User {
         return name;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public void setUsername(String username) {
         this.username = username;
     }
@@ -62,4 +82,5 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
+
 }

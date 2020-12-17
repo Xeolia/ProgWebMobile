@@ -19,7 +19,7 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-            com.projetweb.reminder.User user = userRepository.getUserByUsername(username);
+        com.projetweb.reminder.User user = userRepository.getUserByUsername(username);
         return new User(user.getUsername(),user.getPassword(), new ArrayList<>());
     }
 }

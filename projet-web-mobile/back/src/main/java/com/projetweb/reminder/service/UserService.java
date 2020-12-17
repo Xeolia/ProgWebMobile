@@ -31,7 +31,7 @@ public class UserService {
         return userRepository.getUserByUsername(username);
     }
 
-    public boolean createUser(String username, String password, String name, String email)
+    public boolean createUser(String username, String password, String name, String email,String ville, String adresse,String pays,String codePostal)
     {
         User user = userRepository.getUserByUsername(username);
         if( user !=  null)
@@ -45,6 +45,10 @@ public class UserService {
             newUser.setPassword(passwordEncoder.passwordEncoder().encode(password));
             newUser.setName(name);
             newUser.setEmail(email);
+            newUser.setVille(ville);
+            newUser.setAdresse(adresse);
+            newUser.setPays(pays);
+            newUser.setCodePostal(codePostal);
             userRepository.save(newUser);
             return true;
         }

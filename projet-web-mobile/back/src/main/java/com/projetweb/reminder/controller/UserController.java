@@ -14,6 +14,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -55,11 +56,31 @@ public class UserController {
         User user =  userService.getUserByUsername(username);
         return user;
     }
+
+
+
     @PostMapping("/user/registration")
     @ResponseBody
     public boolean createUser(@RequestBody User user)
     {
-        return userService.createUser(user.getUsername(),user.getPassword(),user.getName(),user.getEmail());
+        return userService.createUser(user.getUsername(),user.getPassword(),user.getName(),user.getEmail(),user.getAdresse(),user.getVille(),user.getPays(),user.getCodePostal());
     }
 
+    @PostMapping("/user/password")
+    @ResponseBody
+    public boolean changePassword(@RequestBody Map<String, String> requestsBody,@RequestHeader("Authorization") Map<String, String> headers)
+    {
+        String password = requestsBody.get("password");
+        String username = userService.getUsernameFromToken(headers.get("authorization"));
+        return userService.changePassword(username,password);
+    }
+
+    @PostMapping("/user/mail")
+    @ResponseBody
+    public boolean changeMail(@RequestBody Map<String, String> requestsBody,@RequestHeader("Authorization") Map<String, String> headers)
+    {
+        String email = requestsBody.get("email");
+        String username = userService.getUsernameFromToken(headers.get("authorization"));
+        return userService.changeMail(username,email);
+    }
 }
