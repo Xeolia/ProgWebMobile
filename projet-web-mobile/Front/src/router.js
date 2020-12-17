@@ -46,6 +46,11 @@ export default new Router({
           name: 'vote',
           component: () => import('./views/Vote.vue')
         },
+        {
+          path: '/profile',
+          name: 'profile',
+          component: () => import('./views/UserProfile.vue')
+        },
       ]
     },
   ]

@@ -1,126 +1,129 @@
 <template>
     <div>
-
-        <base-header type="gradient-theme" class="pb-6 pb-8 pt-5 pt-md-8">
-            <!-- Card stats -->
-            <div class="row">
-                <div class="col-xl-3 col-lg-6">
-                    <stats-card title="Total traffic"
-                                type="gradient-red"
-                                sub-title="350,897"
-                                icon="ni ni-active-40"
-                                class="mb-4 mb-xl-0"
-                    >
-
-                        <template slot="footer">
-                            <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                            <span class="text-nowrap">Since last month</span>
-                        </template>
-                    </stats-card>
-                </div>
-                <div class="col-xl-3 col-lg-6">
-                    <stats-card title="Total traffic"
-                                type="gradient-orange"
-                                sub-title="2,356"
-                                icon="ni ni-chart-pie-35"
-                                class="mb-4 mb-xl-0"
-                    >
-
-                        <template slot="footer">
-                            <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 12.18%</span>
-                            <span class="text-nowrap">Since last month</span>
-                        </template>
-                    </stats-card>
-                </div>
-                <div class="col-xl-3 col-lg-6">
-                    <stats-card title="Sales"
-                                type="gradient-green"
-                                sub-title="924"
-                                icon="ni ni-money-coins"
-                                class="mb-4 mb-xl-0"
-                    >
-
-                        <template slot="footer">
-                            <span class="text-danger mr-2"><i class="fa fa-arrow-down"></i> 5.72%</span>
-                            <span class="text-nowrap">Since last month</span>
-                        </template>
-                    </stats-card>
-
-                </div>
-                <div class="col-xl-3 col-lg-6">
-                    <stats-card title="Performance"
-                                type="gradient-info"
-                                sub-title="49,65%"
-                                icon="ni ni-chart-bar-32"
-                                class="mb-4 mb-xl-0"
-                    >
-
-                        <template slot="footer">
-                            <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 54.8%</span>
-                            <span class="text-nowrap">Since last month</span>
-                        </template>
-                    </stats-card>
-                </div>
-            </div>
+        <base-header type="gradient-theme" class="pb-6 pt-5 pt-md-8">
         </base-header>
 
         <div class="container-fluid mt--7">
             <div class="row">
                 <div class="col">
-                    <div class="card shadow border-0">
-                        <div id="map-canvas" class="map-canvas" data-lat="40.748817" data-lng="-73.985428" style="height: 600px;"></div>
+                    <div class="card shadow">
+                        <div class="card-header bg-transparent">
+                            <h3 class="mb-0">Proposer un vote</h3>
+                        </div>
+                        <div class="card-body">
+                            <form role="form">
+                                <h6 class="heading-small text-muted mb-4">Formulaire vote</h6>
+                                <div class="pl-lg-4">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <base-input
+                                                    id="vote_nom"
+                                                    label="Nom"
+                                                    input-classes="form-control-alternative"
+                                                    v-model="model.vote_nom">
+                                            </base-input>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <base-input
+                                                    id="vote_date"
+                                                    label="Date"
+                                                    input-classes="form-control-alternative"
+                                                    v-model="model.vote_date">
+                                            </base-input>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <base-input
+                                                    id="vote_ville"
+                                                    label="Ville"
+                                                    input-classes="form-control-alternative"
+                                                    v-model="model.vote_ville">
+                                            </base-input>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <base-input
+                                                    id="vote_lieu"
+                                                    label="Lieu"
+                                                    input-classes="form-control-alternative"
+                                                    v-model="model.vote_lieu">
+                                            </base-input>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <base-input
+                                                    label="Description"
+                                                    v-model="model.vote_description">
+                                                <textarea id="vote_description" rows="4" class="form-control form-control-alternative" placeholder="Description de votre réunion"></textarea>
+                                            </base-input>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <base-button type="primary" class="my-4" v-on:click="postSondage()" value="postSondage">Enregistrer</base-button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 </template>
 <script>
-  export default {
-    mounted() {
-      let google= window.google
-      let map = document.getElementById('map-canvas');
-      let lat = map.getAttribute('data-lat');
-      let lng = map.getAttribute('data-lng');
+    import Vue from 'vue'
+    import VueClipboard from 'vue-clipboard2'
+    import VueCookies from 'vue-cookies'
+    Vue.use(VueCookies);
+    Vue.use(VueClipboard);
 
-      const myLatlng = new google.maps.LatLng(lat, lng);
-      const mapOptions = {
-        zoom: 12,
-        scrollwheel: false,
-        center: myLatlng,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        styles: [
-          {"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},
-          {"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},
-          {"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},
-          {"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},
-          {"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},
-          {"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},
-          {"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},
-          {"featureType":"water","elementType":"all","stylers":[{"color":'#5e72e4'},{"visibility":"on"}]}]
-      }
+    export default {
+        name:'vote',
+        data() {
+            return {
+                model: {
+                    vote_nom: '',
+                    vote_date: '',
+                    vote_lieu: '',
+                    vote_ville: '',
+                    vote_description: ''
+                }
+            }
+        },
+        methods: {
+            postSondage() {
+                console.log(this.$cookies.get('token'));
+                var name = document.getElementById("vote_nom").value;
+                var date = document.getElementById("vote_date").value;
+                var lieu = document.getElementById("vote_lieu").value;
+                var ville = document.getElementById("vote_ville").value;
+                var description = document.getElementById("vote_description").value;
+                console.log("name : " + name + "date : " + date + "\n");
 
-      map = new google.maps.Map(map, mapOptions);
+                fetch('http://127.0.0.1:8085/vote/create', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': "Bearer "+this.$cookies.get('token')
+                    },
 
-      const marker = new google.maps.Marker({
-        position: myLatlng,
-        map: map,
-        animation: google.maps.Animation.DROP,
-        title: 'Hello World!'
-      });
+                    body: JSON.stringify({name: name, date: date, lieu: lieu, ville: ville, description: description})
+                })
+                    .then(response => {
+                        response.json().then(data => {
+                            console.log(data);
 
-      const contentString = '<div class="info-window-content"><h2>Argon Dashboard</h2>' +
-        '<p>A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</p></div>';
-
-      const infowindow = new google.maps.InfoWindow({
-        content: contentString
-      });
-
-      google.maps.event.addListener(marker, 'click', function() {
-        infowindow.open(map, marker);
-      });
-    }
-  }
+                            if(response.status !== 200){
+                                alert(response.headers["content-type"]);
+                                alert("Wallah tes nul");
+                            }
+                        })
+                    })
+            }
+        }
+    };
 </script>
-<style>
-</style>
+<style></style>

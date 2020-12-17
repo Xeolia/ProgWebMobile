@@ -55,7 +55,11 @@
 
         </div>
 </template>
+
 <script>
+    import Vue from 'vue'
+    import VueCookies from 'vue-cookies'
+    Vue.use(VueCookies);
   export default {
     name: 'login',
     data() {
@@ -83,7 +87,9 @@
                       response.json().then(data => {
                           console.log(data);
                           if(response.status === 200){
-                              this.$router.push({ path: '/icons'});
+                              this.$cookies.set('token', data.token);
+                              this.$router.push({ path: '/sondage'});
+
                           }else{
                               alert("Bad password");
                           }

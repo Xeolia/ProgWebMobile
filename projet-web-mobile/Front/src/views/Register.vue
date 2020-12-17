@@ -66,6 +66,7 @@
     </div>
 </template>
 <script>
+
   export default {
     name: 'register',
     data() {
@@ -78,23 +79,33 @@
       }
     },
       methods: {
-          postSign: async() => {
+          postSign() {
               var username = document.getElementById("username_register").value;
               var password = document.getElementById("password_register").value;
               var email = document.getElementById("email_register").value;
               var name = document.getElementById("name_register").value;
               console.log("username : " + username + "\npassword : " + "\nname : " + name + password + "\nname : " + name + '\nemail : ' + email);
 
-              const rawResponse = await fetch('http://127.0.0.1:8085/user/registration', {
+              fetch('http://127.0.0.1:8085/user/registration', {
                   method: 'POST',
                   headers: {
                       'Content-Type': 'application/json'
                   },
                   body: JSON.stringify({username: username, name: name, password: password, email: email})
-              });
+              })
+                  .then(response => {
+                      response.json().then(data => {
+                          console.log(data);
 
-              const content = await rawResponse.json();
-              console.log(content)
+                          if(response.status === 200){
+                              alert('Votre compte a bien été enregistré');
+                              this.$router.push({ path: '/login'});
+                          }
+                          else{
+                              alert("Erreur dans l'enregistrement");
+                          }
+                      })
+                  });
           }
       }
   }

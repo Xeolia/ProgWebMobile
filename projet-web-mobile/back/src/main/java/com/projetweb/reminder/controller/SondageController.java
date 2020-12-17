@@ -31,10 +31,10 @@ public class SondageController {
         return this.sondageService.enregistrer(sondage);
     }
 
-//        @GetMapping("sondage/get")
-//        @ResponseBody
-//        public List<Sondage> getSondage(@RequestHeader("Authorization") Map<String, String> headers) {
-//            return sondageService.getSondageRepository();
-//        }
+    @GetMapping("sondage/get")
+    @ResponseBody
+    public List<Sondage> getSondage(@RequestHeader("Authorization") Map<String, String> headers) {
+        return sondageService.getSondageRepository();
+    }
 }
 
