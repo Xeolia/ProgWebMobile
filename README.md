@@ -1,11 +1,35 @@
-# Remider
+Remider
+=================
+
+<img src="https://github.com/Xeolia/ProgWebMobile/blob/develop/projet-web-mobile/back/src/main/ressources/images/logoRemid.png" width="200">
 
 Hey ! Vous avez envie d'organiser un évènement, une sortie avec vos amis, et déjà vous redoutez les multiples échanges de mails, sms, messages Facebook et autres pour décider et se mettre d'accord sur où, quand et à quelle heure on se retrouve...
 
 Fini le cauchemar avec **Remider**, l'app qui vise à améliorer l'organisation de vos meetings :) 
 L'app vous permet d'inviter vos amis, de déterminer le type d'événement : réunion, repas, soirée, cinéma, sport, week-end ou autre, et de suggérer la date.
 
-## Requirements
+Table of contents
+=================
+
+<!--ts-->
+- [Remider](#remider)
+- [Table of contents](#table-of-contents)
+  -   [Requirements](#requirements)
+  -   [Installation](#installation)
+  -   [Running the application locally](#running-the-application-locally)
+- [Architecture](#architecture)
+- [Authentification](#authentification)
+    + [full-stack Architecture](#full-stack-architecture)
+    + [MCD Remider](#mcd-remider)
+    + [Authentification](#authentification)
+    + [Connection](#connection)
+    + [Screenshots](#screenshots)
+<!--te-->
+
+    
+
+Requirements
+============
 
 Pour construire et faire fonctionner l'application vous aurez besoin :
 
@@ -15,7 +39,8 @@ Pour construire et faire fonctionner l'application vous aurez besoin :
 - [Xampp](https://www.apachefriends.org/fr/index.html)
 
 
-## Installation
+Installation
+============
 
 Pour pouvoir lancer correctement notre application il vous faudra une base de donnée en local avec les identifiants ci dessous :
 
@@ -29,7 +54,8 @@ PasswordBDD= WEBEsiea0!
 ```
 
 
-## Running the application locally
+Running the application locally
+============
 
 Pour exécuter l'application Back Spring Boot vous devez lancer la classe `application.properties` sur l'IDE, en utilisant la commande suivante:
 
@@ -40,16 +66,29 @@ Pour exécuter l'application front en Vue Js il vous faut tout d'abord les packa
 ```shell
 npm install -g @vue/cli
 ```
-### Content
 
 
-## Authentification
+Architecture
+============
+
+
+### full-stack Architecture
+
+<img src="https://github.com/Xeolia/ProgWebMobile/blob/develop/projet-web-mobile/back/src/main/ressources/images/full-stack.PNG" width="900">
+
+
+
+### MCD Remider
+
+![image](https://github.com/Xeolia/ProgWebMobile/blob/develop/projet-web-mobile/back/src/main/ressources/images/mcd.PNG)
+
+### Authentification
+
 
 L'utilisateur doit fournir plusieurs champs à l'inscription, tel que son nom, son prénom, un mot de passe choisi, un pseudo, également il devra fournir des éléments sur sa position géographique
 
-## Connection
+### Connection
+
 ### Screenshots
 
 
-full-stack Architecture:
-![image](https://github.com/Xeolia/ProgWebMobile/blob/develop/projet-web-mobile/back/src/main/ressources/images/full-stack.PNG)
