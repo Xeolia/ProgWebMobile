@@ -18,14 +18,14 @@ Table of contents
   -   [Installation](#installation)
   -   [Running the application locally](#running-the-application-locally)
 - [Architecture](#architecture)
-- [Authentification](#authentification)
-    + [full-stack Architecture](#full-stack-architecture)
-    + [MCD Remider](#mcd-remider)
-    + [Authentification](#authentification)
-    + [Connection](#connection)
+  - [full-stack Architecture](#full-stack-architecture)
+  - [MCD Remider](#mcd-remider)
+    * [API Authentification](#api-authentification)
+    * [API connexion utilisateur](#api-connexion-utilisateur)
+    * [API création sondage](#api-création-sondage)
+    * [API vote sondage](#api-vote-sondage)
     + [Screenshots](#screenshots)
 <!--te-->
-
     
 
 Requirements
@@ -82,12 +82,58 @@ Architecture
 
 ![image](https://github.com/Xeolia/ProgWebMobile/blob/develop/projet-web-mobile/back/src/main/ressources/images/mcd.PNG)
 
-### Authentification
+### API Authentification
 
+ API de création d'utilisateur
 
-L'utilisateur doit fournir plusieurs champs à l'inscription, tel que son nom, son prénom, un mot de passe choisi, un pseudo, également il devra fournir des éléments sur sa position géographique
+Méthode : POST  
+Paramètres d'entrée :
+  - PK: user_id
+  - String : nom
+  - String : email
+  - String : login
+  - String : mot de passe
+  - String : pays
+  - String : code_postal
+  - String : ville
+  
+L'utilisateur doit fournir plusieurs champs à l'inscription, tel que son nom, son prénom, un mot de passe choisi, un pseudo, également il devra fournir des éléments sur sa position géographique. Ces éléments sont ensuite intégrés à la base de données.
 
-### Connection
+### API connexion utilisateur
+
+Méthode : POST  
+Paramètres d'entrée :
+- String : login
+- String : mot de passe
+
+Sortie :
+- Token : token d'identification utilisateur
+
+L'utilisateur devra saisir les informations prélablement saisies lors de la création de son compte.
+En se connectant à l'application, il générera un token d'authentification qui sera utilisé lors de l'envoi d'une proposition de rendez-vous. Ainsi il sera également utilisé  lors du vote pour participer à un sondage.
+
+## API création sondage
+Méthode : POST  
+Paramètres d'entrée :
+- PK: sondage_id
+- FK1: user_id
+- String : date
+- String : description
+- String : lieu
+- String : ville
+- String : name
+
+Sortie :
+- String : message de confirmation
+
+## API vote sondage
+Méthode : POST  
+Paramètres d'entrée :
+- FK1: sondage_id
+- FK2: user_id
+- PK: vote_id
+- String : status
+
 
 ### Screenshots
 
