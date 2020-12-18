@@ -32,22 +32,21 @@
                                             <p><span class="font-weight-800">Description :</span> {{value.description}}</p>
                                         </div>
                                         <h4>Choix du lieu :</h4>
-                                        <div class="row" >
-                                            <div class="col-md-12 pb-1" v-for="date in value.date.split(', ')" v-bind:key="date">
-                                                <button v-on:click="postVote('Date',date,value.id)" class="btn btn-primary" style="width:100%" name="Lieu">
-                                                    {{date}}
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <h4>Choix des dates :</h4>
                                         <div class="row">
                                             <div class="col-md-12 pb-1" v-for="lieu in value.lieu.split(', ')" v-bind:key="lieu">
-                                                <button v-on:click="postVote('Lieu',lieu ,value)" class="btn btn-primary" style="width:100%" name="Date">
-                                                    {{lieu}}
+                                                <button v-on:click="postDate('Lieu',lieu ,value.id)" class="btn btn-primary" style="width:100%" name="Lieu">
+                                                    {{lieu}} <span :class="lieu" class="badge badge-light">( {{ loadBadge('Lieu', lieu, value.id) }} )</span>
                                                 </button>
                                             </div>
                                         </div>
-
+                                        <h4>Choix des date :</h4>
+                                        <div class="row" >.
+                                            <div class="col-md-12 pb-1" v-for="date in value.date.split(', ')" v-bind:key="date">
+                                                <button v-on:click="postLieu('Date', date, value.id)" class="btn btn-primary" style="width:100%" name="Date">
+                                                    {{date}} <span :class="date" class="badge badge-light">( {{ loadBadge('Date', date, value.id) }} )</span>
+                                                </button>
+                                            </div>
+                                        </div>
                                     </button>
                                 </div>
                             </div>
@@ -69,15 +68,16 @@
     Vue.use(VueCookies);
     Vue.use(VueClipboard);
 
+
+
     export default {
         name:'vote',
 
         data() {
             return {
-                dates:'',
-                lieux:'',
                 sondages: '',
                 sondage:'',
+                votes:'',
                 model: {
                     vote_nom: '',
                     vote_date: '',
@@ -92,6 +92,21 @@
             this.getSondage();
         },
         methods: {
+            loadBadge(type,choix,sondage){
+                fetch('http://127.0.0.1:8085/vote/count', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': "Bearer "+this.$cookies.get('token')
+                    },
+                    body: JSON.stringify({type: type, choix: choix, reference: sondage})
+                })
+                    .then(response => {
+                        response.json().then(data => {
+                            return "<span class='badge badge-light'>"+ data +"</span>";
+                        })
+                    })
+            },
             getSondage(){
                 fetch('http://127.0.0.1:8085/sondage/getyoursondages', {
                     method: 'GET',
@@ -104,14 +119,13 @@
                     .then(response => {
                         response.json().then(data => {
                             if(response.status===200){
-                                console.log(data);
                                 this.sondages = data;
 
                             }
                         })
                     })
             },
-            postVote(type,choix,sondage) {
+            postLieu(type,choix,sondage) {
                 fetch('http://127.0.0.1:8085/vote/create', {
                     method: 'POST',
                     headers: {
@@ -122,7 +136,6 @@
                 })
                     .then(response => {
                         response.json().then(data => {
-                            console.log(sondage);
 
                             if(response.status === 200){
                                 if(data ===true){
@@ -138,6 +151,34 @@
                         })
                     });
             },
+            postDate(type,choix,sondage) {
+                fetch('http://127.0.0.1:8085/vote/create', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': "Bearer "+this.$cookies.get('token')
+                    },
+                    body: JSON.stringify({type: type, choix: choix, reference: sondage})
+                })
+                    .then(response => {
+                        response.json().then(data => {
+
+                            if(response.status === 200){
+                                if(data ===true){
+                                    alert('Le vote a bien été enregistré');
+                                    this.$forceUpdate();
+                                } else{
+                                    alert("Vous avez déja effectué un vote pour ce sondage");
+                                }
+                            }
+                            else{
+                                alert("Une erreur s'est produite, veuillez réessayer ulterieurement ...")
+                            }
+                        })
+                    });
+            },
+
+
         }
     };
 

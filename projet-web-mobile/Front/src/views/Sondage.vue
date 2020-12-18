@@ -52,7 +52,7 @@
                                                      v-for="(lieu, counter_lieu) in lieux"
                                                      v-bind:key="counter_lieu">
                                                     <span @click="deleteLieu(counter_lieu)">x</span>
-                                                    <label for="lieu">Username :</label>
+                                                    <label for="lieu">Lieu :</label>
                                                     <label>
                                                         <input type="text" v-model="lieu.lieu" required>
                                                     </label>
@@ -255,6 +255,7 @@
                           console.log(data);
                             if(response.status === 200){
                                 alert('Votre réunion à bien été enregistré');
+                                this.$router.push({ path: '/vote'});
                           } else{
                                 alert('Une erreur s\'est produite. Veuillez réesayer ulterieurement');
                             }

@@ -29,9 +29,6 @@ public class Sondage {
     @OneToOne(cascade = CascadeType.ALL)
     private User creator;
 
-    @OneToOne(mappedBy = "reference")
-    private Vote vote;
-
     public int getId() {
         return id;
     }
@@ -42,14 +39,6 @@ public class Sondage {
 
     public void setVille(String ville) {
         this.ville = ville;
-    }
-
-    public String getLieu() {
-        return lieu;
-    }
-
-    public void setLieu(String lieu) {
-        this.lieu = lieu;
     }
 
     public String getName() {
@@ -90,6 +79,14 @@ public class Sondage {
 
     public void setParticipants(String participants) {
         this.participants = participants;
+    }
+
+    public String getLieu() {
+        return lieu;
+    }
+
+    public void setLieu(String lieu) {
+        this.lieu = lieu;
     }
 }
 

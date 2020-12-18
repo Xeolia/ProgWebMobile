@@ -45,13 +45,6 @@
                                     v-model="model.password">
                         </base-input>
 
-                        <div class="row my-4">
-                            <div class="col-12">
-                                <base-checkbox class="custom-control-alternative">
-                                    <span class="text-muted">I agree with the <a href="#!">Privacy Policy</a></span>
-                                </base-checkbox>
-                            </div>
-                        </div>
                         <div class="text-center">
                             <base-button type="primary" class="my-4" v-on:click="postSign()" value="postSign">Create account</base-button>
                         </div>

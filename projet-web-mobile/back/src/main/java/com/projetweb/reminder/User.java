@@ -16,7 +16,7 @@ public class User {
 
     @Id
     @GeneratedValue
-    private long id;
+    private int id;
     private String username;
     private String password;
     private String name;
@@ -52,7 +52,7 @@ public class User {
 
     public String getEmail() { return email; }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 

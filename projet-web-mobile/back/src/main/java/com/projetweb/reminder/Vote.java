@@ -21,29 +21,23 @@ public class Vote {
     private long id;
     private String type;
     private String choix;
+    private int votant;
 
+    private int reference;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private User votant;
-
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private Sondage reference;
-
-
-    public User getVotant() {
+    public int getVotant() {
         return votant;
     }
 
-    public void setVotant(User votant) {
+    public void setVotant(int votant) {
         this.votant = votant;
     }
 
-    public Sondage getReference() {
+    public int getReference() {
         return reference;
     }
 
-    public void setReference(Sondage reference) {
+    public void setReference(int reference) {
         this.reference = reference;
     }
 
