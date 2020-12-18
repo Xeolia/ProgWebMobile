@@ -1,18 +1,18 @@
-Remider
+Reminder
 =================
 
 <img src="https://github.com/Xeolia/ProgWebMobile/blob/develop/projet-web-mobile/back/src/main/ressources/images/logoRemid.png" width="200">
 
 Hey ! Vous avez envie d'organiser un évènement, une sortie avec vos amis, et déjà vous redoutez les multiples échanges de mails, sms, messages Facebook et autres pour décider et se mettre d'accord sur où, quand et à quelle heure on se retrouve...
 
-Fini le cauchemar avec **Remider**, l'app qui vise à améliorer l'organisation de vos meetings :) 
+Fini le cauchemar avec **Reminder**, l'app qui vise à améliorer l'organisation de vos meetings :) 
 L'app vous permet d'inviter vos amis, de déterminer le type d'événement : réunion, repas, soirée, cinéma, sport, week-end ou autre, et de suggérer la date.
 
 Table of contents
 =================
 
 <!--ts-->
-- [Remider](#remider)
+- [Reminder](#reminder)
 - [Table of contents](#table-of-contents)
   -   [Requirements](#requirements)
   -   [Installation](#installation)
