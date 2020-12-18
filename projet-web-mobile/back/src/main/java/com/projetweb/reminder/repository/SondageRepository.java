@@ -9,5 +9,6 @@ import com.projetweb.reminder.Sondage;
 import java.util.List;
 
 public interface SondageRepository extends JpaRepository<Sondage, Integer> {
+    Sondage getSondageById(int id);
 }
 

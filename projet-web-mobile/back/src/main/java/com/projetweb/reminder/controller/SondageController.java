@@ -37,5 +37,27 @@ public class SondageController {
     public List<Sondage> getSondage(@RequestHeader("Authorization") Map<String, String> headers) {
         return this.sondageService.getSondageRepository();
     }
+
+    @GetMapping("sondage/getyoursondages")
+    @ResponseBody
+    public List<Sondage> getYourSondages(@RequestHeader("Authorization") Map<String, String> headers)
+    {
+        String username = userService.getUsernameFromToken(headers.get("authorization"));
+        return this.sondageService.getSondageByUsername(username);
+    }
+
+    @GetMapping("sondage/getlieux")
+    @ResponseBody
+    public List<String> getLieux(@RequestBody Sondage sondage, @RequestHeader("Authorization") Map<String, String> headers)
+    {
+        return this.sondageService.getLieux(sondage);
+    }
+
+    @GetMapping("sondage/getdates")
+    @ResponseBody
+    public List<String> getDates(@RequestBody Sondage sondage, @RequestHeader("Authorization") Map<String, String> headers)
+    {
+        return this.sondageService.getDates(sondage);
+    }
 }
 

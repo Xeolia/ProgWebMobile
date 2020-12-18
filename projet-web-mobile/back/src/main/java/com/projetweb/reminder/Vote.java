@@ -16,25 +16,11 @@ import javax.persistence.*;
 
 public class Vote {
 
-    public enum Status {
-        ACCEPT("A"), DECLINE("D"), MAYBE("M");
-        private String status;
-
-        private Status(String status) {
-            this.status = status;
-        }
-
-        public String getStatus() {
-            return status;
-        }
-    }
-
     @Id
     @GeneratedValue
     private long id;
-
-    @Enumerated(EnumType.ORDINAL)
-    private Status status;
+    private String type;
+    private String choix;
 
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -59,5 +45,21 @@ public class Vote {
 
     public void setReference(Sondage reference) {
         this.reference = reference;
+    }
+
+    public String getChoix() {
+        return choix;
+    }
+
+    public void setChoix(String choix) {
+        this.choix = choix;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

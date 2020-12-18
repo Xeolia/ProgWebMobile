@@ -35,7 +35,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests().antMatchers("/user/authentification","/user/registration","/user","/user/password","/user/mail", "/sondage/create", "/user/loadusernames", "/sondage/get").permitAll().anyRequest().authenticated()
+        http.csrf().disable().authorizeRequests().antMatchers("/user/authentification","/user/registration","/user","/user/password","/user/mail", "/sondage/create", "/user/loadusernames", "/sondage/get", "/sondage/getyoursondages", "/vote/create").permitAll().anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class);
     }

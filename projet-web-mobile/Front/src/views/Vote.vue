@@ -31,31 +31,21 @@
                                         <div class="row">
                                             <p><span class="font-weight-800">Description :</span> {{value.description}}</p>
                                         </div>
-                                        <h4>Choix du lieu</h4>
-                                        <div class="row">
-                                            <div class="col-md-4 pb-1">
-                                                <button class="btn btn-primary">
-                                                    test
-                                                </button>
-                                            </div>
-                                            <div class="col-md-4 pb-1">
-                                                <button class="btn btn-primary">
-                                                    test
-                                                </button>
-                                            </div>
-                                            <div class="col-md-4 pb-1">
-                                                <button class="btn btn-primary">
-                                                    test
-                                                </button>
-                                            </div>
-                                            <div class="col-md-4 pb-1">
-                                                <button class="btn btn-primary">
-                                                    test
+                                        <h4>Choix du lieu :</h4>
+                                        <div class="row" >
+                                            <div class="col-md-12 pb-1" v-for="date in value.date.split(', ')" v-bind:key="date">
+                                                <button v-on:click="postVote('Date',date,value.id)" class="btn btn-primary" style="width:100%" name="Lieu">
+                                                    {{date}}
                                                 </button>
                                             </div>
                                         </div>
+                                        <h4>Choix des dates :</h4>
                                         <div class="row">
-
+                                            <div class="col-md-12 pb-1" v-for="lieu in value.lieu.split(', ')" v-bind:key="lieu">
+                                                <button v-on:click="postVote('Lieu',lieu ,value)" class="btn btn-primary" style="width:100%" name="Date">
+                                                    {{lieu}}
+                                                </button>
+                                            </div>
                                         </div>
 
                                     </button>
@@ -84,7 +74,10 @@
 
         data() {
             return {
+                dates:'',
+                lieux:'',
                 sondages: '',
+                sondage:'',
                 model: {
                     vote_nom: '',
                     vote_date: '',
@@ -96,13 +89,11 @@
             }
         },
         created () {
-            // fetch the data when the view is created and the data is
-            // already being observed
-            this.getSondage()
+            this.getSondage();
         },
         methods: {
             getSondage(){
-                fetch('http://127.0.0.1:8085/sondage/get', {
+                fetch('http://127.0.0.1:8085/sondage/getyoursondages', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -119,6 +110,33 @@
                             }
                         })
                     })
+            },
+            postVote(type,choix,sondage) {
+                fetch('http://127.0.0.1:8085/vote/create', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': "Bearer "+this.$cookies.get('token')
+                    },
+                    body: JSON.stringify({type: type, choix: choix, reference: sondage})
+                })
+                    .then(response => {
+                        response.json().then(data => {
+                            console.log(sondage);
+
+                            if(response.status === 200){
+                                if(data ===true){
+                                    alert('Le vote a bien été enregistré');
+                                    this.$forceUpdate();
+                                } else{
+                                    alert("Vous avez déja effectué un vote pour ce sondage");
+                                }
+                            }
+                            else{
+                                alert("Une erreur s'est produite, veuillez réessayer ulterieurement ...")
+                            }
+                        })
+                    });
             },
         }
     };
