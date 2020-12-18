@@ -48,17 +48,19 @@ Pour pouvoir lancer correctement notre application il vous faudra une base de do
 
 ```
 TYPEBDD = MYSQL
-HostBDD = db
+url=jdbc:mysql://localhost:3306/reminder
 PortBDD = 8085
 DBName = reminder
 LoginBDD = user
-PasswordBDD= WEBEsiea0!
+PasswordBDD= ProgWeb
 ```
 
 
 Running the application locally
 ============
-Dans la partie back il faut regarder si le dossier ressource et bien configurer comme un ressource root. Pour exécuter l'application Back Spring Boot vous devez lancer la classe `application.properties` sur l'IDE en spécifiant  `application.properties` comme étant l'application Spring Boot à executer. 
+Dans la partie back il faut regarder si le dossier ressource est bien configuré comme un ressource root. Ci-dessus les informations pour accèder à la BDD à remplir dans l'application Back Spring Boot `ressources/application.properties` 
+
+`ReminderApplication`est l'application Spring Boot à executer. 
 Puis lancer Maven en utilisant la commande suivante:
 
 ```shell
