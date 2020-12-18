@@ -59,10 +59,27 @@
                                                 </base-input>
                                             </div>
                                         </div>
+
+                                            <div id="visa">
+                                                <h2>Liste des participants</h2>
+                                                <form>
+                                                    <br><br>
+                                                    <button class="my-4" @click="addVisa">Ajout d'un participant</button>
+                                                    <br>
+                                                    <div class="previous"
+                                                         v-for="(applicant, counter) in applicants"
+                                                         v-bind:key="counter">
+                                                        <span @click="deleteVisa(counter)">x</span>
+                                                        <label for="duration">Username :</label>
+                                                        <input type="text" v-model="applicant.previous" required>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         <div class="text-center">
                                             <base-button type="primary" class="my-4" v-on:click="postSondage()" value="postSondage">Enregistrer</base-button>
                                         </div>
                                     </div>
+
                                 </form>
 
                         </div>
@@ -80,10 +97,20 @@
   Vue.use(VueCookies);
   Vue.use(VueClipboard);
 
+
   export default {
       name:'sondage',
+      props: {
+          msg: String
+      },
       data() {
           return {
+              applicants:[
+                  {
+                      previous: '',
+                      expiration:''
+                  }
+              ],
               model: {
                   sondage_nom: '',
                   sondage_date: '',
@@ -94,6 +121,15 @@
           }
       },
       methods: {
+          addVisa(){
+              this.applicants.push({
+                  previous:'',
+                  expiration: ''
+              })
+          },
+          deleteVisa(counter){
+              this.applicants.splice(counter,1);
+          },
           postSondage() {
               console.log(this.$cookies.get('token'));
               var name = document.getElementById("sondage_nom").value;
@@ -124,6 +160,46 @@
                   })
           }
       }
+
   };
 </script>
-<style></style>
+<style scoped>
+    #visa {
+        margin: 20px auto;
+        max-width: 700px;
+    }
+    label{
+        display: block;
+        margin: 20px 0 10px;
+    }
+    input {
+        font-size: 30px;
+        border: 1px double rgb(102, 97, 96) ;
+        border-radius: 4px;
+    }
+    button {
+        font-size: 16px;
+        background: rgb(64, 179, 140);
+        padding: 0.4rem 1.3rem;
+        text-align: center;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+        margin: 10px;
+    }
+    span{
+        width: 30px;
+        float: right;
+        cursor: pointer;
+    }
+    span:hover{
+        color: brown;
+    }
+    .previous{
+        border: 1.5px solid;
+        border-radius: 5px;
+        padding:5px;
+        margin-bottom: 10px;
+    }
+</style>

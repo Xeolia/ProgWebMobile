@@ -2,6 +2,7 @@ com/projetweb/reminder/Sondage.class
 com/projetweb/reminder/repository/VoteRepository.class
 com/projetweb/reminder/service/SondageService.class
 com/projetweb/reminder/Vote.class
+com/projetweb/reminder/VoteId.class
 com/projetweb/reminder/service/VoteService.class
 com/projetweb/reminder/controller/SondageController.class
 com/projetweb/reminder/Vote$Status.class

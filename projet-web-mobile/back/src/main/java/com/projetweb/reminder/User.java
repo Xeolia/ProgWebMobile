@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Table(name = "user")
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 @Entity
 
 public class User {
@@ -29,11 +28,9 @@ public class User {
 
 
 
-    @OneToOne(mappedBy = "creator")
-    private Sondage sondage;
 
-    @OneToOne(mappedBy = "votant")
-    private Vote vote;
+    public User() {
+    }
 
     public String getVille() {return ville;}
 

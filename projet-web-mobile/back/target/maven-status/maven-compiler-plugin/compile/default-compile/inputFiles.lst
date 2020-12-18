@@ -8,6 +8,7 @@
 /Users/tbenard/IdeaProjects/ProgWebMobile/projet-web-mobile/back/src/main/java/com/projetweb/reminder/utils/JwtUtil.java
 /Users/tbenard/IdeaProjects/ProgWebMobile/projet-web-mobile/back/src/main/java/com/projetweb/reminder/ReminderApplication.java
 /Users/tbenard/IdeaProjects/ProgWebMobile/projet-web-mobile/back/src/main/java/com/projetweb/reminder/Vote.java
+/Users/tbenard/IdeaProjects/ProgWebMobile/projet-web-mobile/back/src/main/java/com/projetweb/reminder/VoteId.java
 /Users/tbenard/IdeaProjects/ProgWebMobile/projet-web-mobile/back/src/main/java/com/projetweb/reminder/models/AuthentificationRequest.java
 /Users/tbenard/IdeaProjects/ProgWebMobile/projet-web-mobile/back/src/main/java/com/projetweb/reminder/controller/SondageController.java
 /Users/tbenard/IdeaProjects/ProgWebMobile/projet-web-mobile/back/src/main/java/com/projetweb/reminder/controller/UserController.java

@@ -29,7 +29,6 @@ public class Vote {
         }
     }
 
-
     @Id
     @GeneratedValue
     private long id;
@@ -37,12 +36,12 @@ public class Vote {
     @Enumerated(EnumType.ORDINAL)
     private Status status;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User votant;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "sondage_id", referencedColumnName = "id")
+    private User votant;
+
+
+    @OneToOne(cascade = CascadeType.ALL)
     private Sondage reference;
 
 

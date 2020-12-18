@@ -4,6 +4,7 @@ import com.projetweb.reminder.User;
 import com.projetweb.reminder.service.UserService;
 import com.projetweb.reminder.service.SondageService;
 import com.projetweb.reminder.Sondage;
+import net.minidev.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +35,7 @@ public class SondageController {
     @GetMapping("sondage/get")
     @ResponseBody
     public List<Sondage> getSondage(@RequestHeader("Authorization") Map<String, String> headers) {
-        return sondageService.getSondageRepository();
+        return this.sondageService.getSondageRepository();
     }
 }
 
