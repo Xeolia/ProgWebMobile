@@ -15,7 +15,7 @@ Table of contents
 <!--ts-->
 - [Reminder](#reminder)
 - [Table of contents](#table-of-contents)
-  -   [Requirements](#requirements)
+  -   [Stack Technique](#stack-technique)
   -   [Installation](#installation)
   -   [Running the application locally](#running-the-application-locally)
 - [Architecture](#architecture)
@@ -30,15 +30,18 @@ Table of contents
 <!--te-->
     
 
-Requirements
-============
+Stack Technique
+===============
 
 Pour construire et faire fonctionner l'application vous aurez besoin :
 
 - [JDK 14](https://www.oracle.com/java/technologies/javase/jdk14-archive-downloads.html)
 - [Maven 3](https://maven.apache.org)
 - [Vue Js](https://fr.vuejs.org/v2/guide/installation.html)
-- [Xampp](https://www.apachefriends.org/fr/index.html)
+- [MySQL](https://www.mysql.com/fr/about/legal/logos.html)
+
+
+<img src="https://github.com/Xeolia/ProgWebMobile/blob/master/projet-web-mobile/back/src/main/resources/images/stack_technique.PNG" width="400">
 
 
 Installation
