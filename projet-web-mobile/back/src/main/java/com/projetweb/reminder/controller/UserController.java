@@ -63,6 +63,9 @@ public class UserController {
     @ResponseBody
     public boolean createUser(@RequestBody User user)
     {
+        if (userService.isUserFromUsername(user.getUsername())){
+            return false;
+        }
         return userService.createUser(user.getUsername(),user.getPassword(),user.getName(),user.getEmail(),user.getAdresse(),user.getVille(),user.getPays(),user.getCodePostal());
     }
 
@@ -81,6 +84,15 @@ public class UserController {
     {
         String email = requestsBody.get("email");
         String username = userService.getUsernameFromToken(headers.get("authorization"));
+
         return userService.changeMail(username,email);
+    }
+
+
+    @GetMapping("/user/loadusernames")
+    @ResponseBody
+    public List<String> loadUsername(@RequestHeader("Authorization") Map<String, String> headers)
+    {
+        return userService.getAllUsername();
     }
 }

@@ -21,18 +21,43 @@
                                         <div class="row">
                                             <p><span class="font-weight-800">Nom :</span> {{value.name}}</p>
                                         </div>
-                                        <div class="row">
-                                            <p><span class="font-weight-800">Date :</span> {{value.date}}</p>
-                                        </div>
-                                        <div class="row">
-                                            <p><span class="font-weight-800">Lieu :</span> {{value.lieu}}</p>
-                                        </div>
+
                                         <div class="row">
                                             <p><span class="font-weight-800">Ville :</span> {{value.ville}}</p>
                                         </div>
                                         <div class="row">
+                                            <p><span class="font-weight-800">Participants :</span> {{value.participants}}</p>
+                                        </div>
+                                        <div class="row">
                                             <p><span class="font-weight-800">Description :</span> {{value.description}}</p>
                                         </div>
+                                        <h4>Choix du lieu</h4>
+                                        <div class="row">
+                                            <div class="col-md-4 pb-1">
+                                                <button class="btn btn-primary">
+                                                    test
+                                                </button>
+                                            </div>
+                                            <div class="col-md-4 pb-1">
+                                                <button class="btn btn-primary">
+                                                    test
+                                                </button>
+                                            </div>
+                                            <div class="col-md-4 pb-1">
+                                                <button class="btn btn-primary">
+                                                    test
+                                                </button>
+                                            </div>
+                                            <div class="col-md-4 pb-1">
+                                                <button class="btn btn-primary">
+                                                    test
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                        </div>
+
                                     </button>
                                 </div>
                             </div>
@@ -65,7 +90,8 @@
                     vote_date: '',
                     vote_lieu: '',
                     vote_ville: '',
-                    vote_description: ''
+                    vote_description: '',
+                    vote_participants: ''
                 }
             }
         },
@@ -90,7 +116,6 @@
                                 console.log(data);
                                 this.sondages = data;
 
-                                alert("Nous affichons la liste des sondages");
                             }
                         })
                     })

@@ -45,10 +45,6 @@
                                     v-model="model.password">
                         </base-input>
 
-                        <div class="text-muted font-italic">
-                            <small>Password strength: <span class="text-success font-weight-700">strong</span></small>
-                        </div>
-
                         <div class="row my-4">
                             <div class="col-12">
                                 <base-checkbox class="custom-control-alternative">
@@ -98,11 +94,15 @@
                           console.log(data);
 
                           if(response.status === 200){
-                              alert('Votre compte a bien été enregistré');
-                              this.$router.push({ path: '/login'});
+                              if(data ===true){
+                                  alert('Votre compte a bien été enregistré');
+                                  this.$router.push({ path: '/login'});
+                              } else{
+                                  alert("L'username est déja utilisé, veuillez en choisir un autre.");
+                              }
                           }
                           else{
-                              alert("Erreur dans l'enregistrement");
+                            alert("Une erreur s'est produite, veuillez réessayer ulterieurement ...")
                           }
                       })
                   });

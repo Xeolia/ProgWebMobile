@@ -7,6 +7,7 @@ import com.projetweb.reminder.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -83,5 +84,22 @@ public class UserService {
     {
         token = token.substring(7);
         return TokenUtil.extractUsername(token);
+    }
+
+    public boolean isUserFromUsername(String username)
+    {
+        return userRepository.findByUsername(username) != null;
+    }
+
+    public List<String> getAllUsername()
+    {
+        List<User> users = userRepository.findAll();
+        List<String> usernames = new ArrayList<>();
+        int i =0;
+        for (User user:users) {
+            usernames.add(user.getUsername());
+            i++;
+        }
+        return usernames;
     }
 }

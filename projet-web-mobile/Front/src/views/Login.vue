@@ -16,7 +16,7 @@
                         </div>
                         <form role="form">
                             <base-input class="input-group-alternative mb-3"
-                                        placeholder="Email"
+                                        placeholder="Username"
                                         addon-left-icon="ni ni-email-83"
                                         id="username_login"
                                         v-model="model.username">
@@ -65,7 +65,7 @@
     data() {
       return {
         model: {
-          email: '',
+          username: '',
           password: ''
         }
       }

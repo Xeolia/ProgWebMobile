@@ -22,6 +22,7 @@ public class Sondage {
     private String name;
     private String date;
     private String description;
+    private String participants;
 
 
 
@@ -81,6 +82,14 @@ public class Sondage {
 
     public void setCreator(User creator) {
         this.creator = creator;
+    }
+
+    public String getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(String participants) {
+        this.participants = participants;
     }
 }
 
